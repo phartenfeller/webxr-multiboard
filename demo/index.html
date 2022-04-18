@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<head>
+  <title>WebXR Multiboard Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="index.js"></script>
+</head>
+
+<style>
+  html {
+    color-scheme: dark light;
+  }
+
+  body {
+    background: #1f2124;
+    color: #dde2e9;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  currency-converter {
+    margin: 8px;
+  }
+
+  h1 {
+    color: white;
+  }
+</style>
+
+<body>
+  <h1>WebXR Multiboard</h1>
+
+
+
+  <div id="content" style="display: grid; grid-template-columns: repeat(1,minmax(0,1fr));"> </div>
+
+
+  <script>
+    async function initVR() {
+      const dataReq = await fetch('./static/f1-wins-data.json');
+      const f1data = await dataReq.json();
+
+      console.log({ f1data });
+
+      const data = {
+        dimensions: {
+          compareDim: {
+            name: 'Driver',
+            accessor: 'driver',
+            colors: ['#2dd4bf', '#a78bfa', '#f472b6', '#fb923c'],
+          },
+          filterDims: [
+            {
+              name: 'Constructor',
+              abbr: 'Cn',
+              accessor: 'constructor',
+            },
+            {
+              name: 'Country',
+              abbr: 'Ct',
+              accessor: 'country',
+            },
+            {
+              name: 'Year',
+              abbr: 'Yr',
+              accessor: 'year',
+            },
+            {
+              name: 'Grid Position',
+              abbr: 'Gr',
+              accessor: 'grid',
+            },
+          ]
+        },
+        records: f1data
+      }
+
+      const el = document.createElement('webxr-multiboard');
+      el.data = data;
+
+      const conte = document.querySelector('#content');
+      conte.appendChild(el)
+
+
+    }
+    initVR();
+  </script>
+</body>

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "lib": ["es2017", "dom", "dom.iterable"],
+    "declaration": false,
+    "sourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "outDir": "./",
+    "importHelpers": false,
+    "baseUrl": ".",
+    "paths": { "*": ["src/*"] },
+    "allowJs": true
+  },
+  "include": ["./src/*", "node_modules/@types/aframe/index.d.ts"],
+  "exclude": [],
+  "files": ["node_modules/@types/aframe/index.d.ts"]
+}
